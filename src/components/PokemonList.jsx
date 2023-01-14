@@ -17,7 +17,14 @@ const PokemonList = () => {
 
   return (
     <>
-      {pokemons && pokemons.map(pokemon => <PokemonItem key={pokemon.name} name={pokemon.name} /> )}
+      <section class="section section-cards">
+            <div class="container g-elements gap-md" id="PokemonsContainer">
+            
+              {pokemons && pokemons.map(pokemon => <PokemonItem key={pokemon.name} name={pokemon.name} /> )}
+
+
+            </div>
+      </section>
     </>
   )
 }
