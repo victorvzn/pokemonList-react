@@ -12,3 +12,11 @@ export function fetchPokemons(page = 1, limit = 9) {
     params: { offset, limit }
   })
 }
+
+export function fetchPokemon(id) {
+  return request({
+    baseURL,
+    method: 'GET',
+    url: `pokemon/${id}`,
+  })
+}
