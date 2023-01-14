@@ -1,21 +1,19 @@
 import React from 'react'
 
-const PokemonItem = ({ name }) => {
-  const imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/20.png`
-
+const PokemonItem = ({ name, url }) => {
+  const id = url.split("/").at(6)
   return (
     <div>
-    <article class="card pokemon-modal" data-id="${id}" href="#modal"  >
-      <div class="card__image">
-        <img src={imgUrl} alt={name} />
+    <article className="card pokemon-modal" data-id={id} href="#modal"  >
+      <div className="card__image">
+        <img src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"+id+".png"} alt={name} />
       </div>
-
-      <div class="card__content">
+      <div className="card__content">
           
-          <div class="card__content-title box-card text-center">
-              <h3 class="text-primary capital" >{name} </h3>
-              <h4 class="text-alternate">Electric</h4>
-              <span class="orderID">N° 323</span> 
+          <div className="card__content-title box-card text-center">
+              <h3 className="text-primary capital" >{name} </h3>
+              <h4 className="text-alternate">Electric</h4>
+              <span className="orderID">N° 323</span> 
           </div>
       </div>
     </article>
