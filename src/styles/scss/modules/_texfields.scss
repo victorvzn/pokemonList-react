@@ -4,8 +4,19 @@ input {
 		border: none;
 		outline: none;
 	}
+
+}
+option{
+	color: #919EAB!important;
+	font-size: 20px;
+	text-transform:capitalize!important;
 }
 select {
+	background-color: transparent!important;
+	color: #919EAB!important;
+	text-transform:capitalize!important;
+
+	font-size: 20px;
 	&:focus {
 		border: none;
 		outline: none;
@@ -59,6 +70,8 @@ button {
 .textfield-simple {
 	padding-left: 16px;
 	width: 100%;
+	background-color: var(--grey-light-theme-color);
+	border-radius: var(--border-radius-medium);
 }
 .textfield {
 	border-radius: var(--border-radius-medium);
