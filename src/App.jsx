@@ -5,9 +5,18 @@ import TopBar from "./components/TopBar"
 
 import { fetchPokemonsByType, fetchPokemon } from './services/pokemons'
 
+import { useParams } from 'react-router-dom'
+
 function App() {
   const [pokemons, setPokemons] = useState([])
   const [selectedType, setSelectedType] = useState('electric')
+  const [isLoading, setIsLoading] = useState(false)
+
+  const { type } = useParams()
+
+  useEffect(() => {
+    setSelectedType(type)
+  }, [type])
 
   const handleFilterByType = (type) => {
     setSelectedType(type)
@@ -16,10 +25,10 @@ function App() {
   useEffect(() => {
     fetchPokemonsByType(selectedType)
       .then(async (response) => {
-        console.log(response)
-        
+        setIsLoading(true)
         const pokemonResponse = response.data.pokemon
         const results = pokemonResponse.map(({ pokemon }) => pokemon)
+
         const pokemonsPromises = await results.map(async (result) => {
           const { name, url } = result;
           const id = url.split("/").at(6)
@@ -47,14 +56,17 @@ function App() {
         })
 
         const customPokemons = await Promise.all(pokemonsPromises)
+
         setPokemons(customPokemons)
+
+        setIsLoading(false)
       })
   }, [selectedType])
 
   return (
     <>
-      <TopBar selectedType={selectedType} handleFilter={handleFilterByType} />
-      <PokemonList pokemons={pokemons} />
+      <TopBar handleFilter={handleFilterByType} />
+      <PokemonList pokemons={pokemons} isLoading={isLoading} />
     </>
   )
 }

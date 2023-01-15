@@ -3,8 +3,12 @@ import {useState } from 'react'
 import PokemonItem from './PokemonItem'
 import PokemonModal from './PokemonModal'
 
-const PokemonList = ({ pokemons }) => {
+import { useParams } from 'react-router-dom'
+
+const PokemonList = ({ pokemons, isLoading }) => {
   const [selectedPokemon, setSelectedPokemon] = useState(null)
+
+  const { type } = useParams()
 
   const handleSelect = (pokemon) => {
     setSelectedPokemon(pokemon)
@@ -24,6 +28,28 @@ const PokemonList = ({ pokemons }) => {
     closeOverlay.addEventListener('click', modal.classList.remove('open'));
     closeBtn.addEventListener('click', modal.classList.remove('open'));
     
+  }
+
+  if (isLoading) {
+    return (
+      <div className='section section-cards' style={{ display: 'flex', justifyContent: 'center', height: "100vh" }}>
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/1169/1169608.png"
+            alt=""
+            className="nav__logo spinner"
+            width="200"
+            height="200"
+          />
+      </div>
+    )
+  }
+
+  if (pokemons && pokemons.length === 0) {
+    return (
+      <div className='section section-cards' style={{ display: 'flex', justifyContent: 'center', height: "100vh" }}>
+         <h2>No se encontraron pokemones del tipo '{type}'</h2> 
+      </div>
+    )
   }
 
   return (

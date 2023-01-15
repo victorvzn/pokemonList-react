@@ -1,8 +1,16 @@
 import { useEffect, useState } from 'react'
 import { fetchTypes } from '../services/types'
 
-const TopBar = ({ handleFilter, selectedType }) => {
+import { Link, useNavigate } from 'react-router-dom'
+
+import {useParams} from 'react-router-dom'
+
+const TopBar = ({ handleFilter }) => {
   const [types, setTypes] = useState([])
+
+  const navigate = useNavigate()
+
+  const { type } = useParams()
 
   useEffect(() => {
     fetchTypes()
@@ -14,6 +22,7 @@ const TopBar = ({ handleFilter, selectedType }) => {
   const handleFilterByType = (event) => {
     const { value } = event.target
     handleFilter(value)
+    navigate(`/pokemonList-react/${value}`)
   }
 
   return (
@@ -21,17 +30,19 @@ const TopBar = ({ handleFilter, selectedType }) => {
       <section className="section">
         <div className="section-filter resp-form container f-elements gap-sm">
           <div className="flex  gap-xl ">
-            <a href="index.html">
+            <Link to="/pokemonList-react/">
               <img src="https://cdn-icons-png.flaticon.com/512/1169/1169608.png" alt="" className="nav__logo"
                 width="40" height="40" />
-            </a>
+            </Link>
           </div>
           <form className="pokemonInput" role="search" id="searchForm">
 
             <div className="textfield-simple search-field flex items-center gap-sm w-138">
-              <select className="search-input" name="" placeholder="selecciona un categoría" onChange={handleFilterByType}>
+              <select className="search-input" name="" placeholder="selecciona un categoría" onChange={handleFilterByType} value={type}>
                 <option value="normal">Selecciona un tipo</option>
-                {types && types.map(({ name }) => <option key={name} value={name}>{name}</option>)}
+                {types && types.map(({ name }) => (
+                  <option key={name} value={name}>{name}</option>
+                ))}
               </select>
             </div>
 
