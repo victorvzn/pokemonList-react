@@ -8,21 +8,6 @@ const PokemonList = () => {
   const [pokemons, setPokemons] = useState([])
 
 
-  document.querySelectorAll('.skill-percent').forEach(elm =>{
-    var perc = elm.dataset.percent
-    elm.style.width = perc
-  })
-
-  var closeOverlay = document.getElementById('overlay');
-  var closeBtn = document.getElementById('closeModal');
-
-  closeOverlay.addEventListener('click', closeModal);
-  closeBtn.addEventListener('click', closeModal);
-  
-  function closeModal(){
-      modal.classList.remove('open');
-  }
-
   useEffect(() => {
     fetchPokemons()
       .then(async (response) => {
