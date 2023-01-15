@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react'
 
 import PokemonItem from './PokemonItem'
 
-import { fetchPokemons, fetchPokemon } from '../services/pokemons'
+import { fetchPokemonsByType, fetchPokemon } from '../services/pokemons'
 
 const PokemonList = () => {
   const [pokemons, setPokemons] = useState([])
 
 
   useEffect(() => {
-    fetchPokemons()
+    fetchPokemonsByType()
       .then(async (response) => {
-        const results = response.data.results
-
+        const pokemonResponse = response.data.pokemon
+        const results = pokemonResponse.map(({ pokemon }) => pokemon)
         const pokemonsPromises = await results.map(async (result) => {
           const { name, url } = result;
           const id = url.split("/").at(6)
@@ -52,7 +52,7 @@ const PokemonList = () => {
         <article className="card-modal">
           <div id="closeModal">X</div>
           <div className="card__image-modal " id={pokemon.name} >
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/20.png" />
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/20.png" />
           </div>
 
           <div className="card__content">
