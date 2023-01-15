@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PokemonItem = ({ name, url }) => {
+const PokemonItem = ({ name, url, type }) => {
   const id = url.split("/").at(6)
   return (
     <div>
@@ -12,8 +12,8 @@ const PokemonItem = ({ name, url }) => {
             
             <div className="card__content-title box-card text-center">
                 <h3 className="text-primary capital" >{name} </h3>
-                <h4 className="text-alternate">Electric</h4>
-                <span className="orderID">N° 323</span> 
+                <h4 className="text-alternate">{type}</h4>
+                <span className="orderID">N° {id}</span> 
             </div>
         </div>
       </article>
