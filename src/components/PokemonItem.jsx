@@ -12,8 +12,9 @@ const PokemonItem = ({ pokemon, handleSelect }) => {
         </div>
         <div className="card__content">
             <div className="card__content-title box-card text-center">
-                <h3 className="text-primary capital" >{pokemon.name} </h3>
+                <h3 className="text-grey capital" >{pokemon.name} </h3>
                 <h4 className="text-alternate">{pokemon.types}</h4>
+                <br />
                 <span className="orderID">N° {id}</span> 
             </div>
         </div>

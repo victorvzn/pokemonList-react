@@ -13,13 +13,14 @@
 	overflow: hidden;
 	img {
 		width: 100%;
-		min-width: 368px;
-		min-height: 223px;
+		min-width: 268px;
+		min-height: 268px;
 	}
 }
 .card__content-title {
-	padding: 16px 24px 0px 24px;
+	padding: 16px 24px 24px 24px;
 }
+
 .card__content-row {
 	padding-left: 24px;
 	width: 100%;
@@ -68,14 +69,11 @@
 	z-index: 1;
 }
 .orderID{
-	background-color: var(--primary-theme-color);
+	background-color: var(--alternate-theme-color);
 	padding: 10px;
 	border-radius: 8px;
 	color: #fff;
-	position: relative;
-	top: -130px;
-	right: -140px;
-
+	display: block;
 }
 .card__image {
 	z-index: 2;
