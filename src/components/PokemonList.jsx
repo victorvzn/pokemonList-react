@@ -5,7 +5,7 @@ import PokemonModal from './PokemonModal'
 
 import { useParams } from 'react-router-dom'
 
-const PokemonList = ({ pokemons, isLoading }) => {
+const PokemonList = ({ pokemons, isLoading, isNotFound }) => {
   const [selectedPokemon, setSelectedPokemon] = useState(null)
 
   const { type } = useParams()
@@ -44,10 +44,10 @@ const PokemonList = ({ pokemons, isLoading }) => {
     )
   }
 
-  if (pokemons && pokemons.length === 0) {
+  if (isNotFound) {
     return (
       <div className='section section-cards' style={{ display: 'flex', justifyContent: 'center', height: "100vh" }}>
-         <h2>No se encontraron pokemones del tipo '{type}'</h2> 
+         <h2>No se encontraron pokemons del tipo '{type}'</h2> 
       </div>
     )
   }

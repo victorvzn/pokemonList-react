@@ -11,6 +11,7 @@ function App() {
   const [pokemons, setPokemons] = useState([])
   const [selectedType, setSelectedType] = useState('electric')
   const [isLoading, setIsLoading] = useState(false)
+  const [isNotFound, setIsNotFound] = useState(false)
 
   const { type } = useParams()
 
@@ -27,6 +28,9 @@ function App() {
       .then(async (response) => {
         setIsLoading(true)
         const pokemonResponse = response.data.pokemon
+
+        setIsNotFound(pokemonResponse.length === 0)
+
         const results = pokemonResponse.map(({ pokemon }) => pokemon)
 
         const pokemonsPromises = await results.map(async (result) => {
@@ -66,7 +70,7 @@ function App() {
   return (
     <>
       <TopBar handleFilter={handleFilterByType} />
-      <PokemonList pokemons={pokemons} isLoading={isLoading} />
+      <PokemonList pokemons={pokemons} isLoading={isLoading} isNotFound={isNotFound} />
     </>
   )
 }
