@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
 import { fetchTypes } from '../services/types'
 
-const TopBar = () => {
+const TopBar = ({ handleFilter, selectedType }) => {
   const [types, setTypes] = useState([])
-  const [selectedType, setSelectedType] = useState([])
 
   useEffect(() => {
     fetchTypes()
@@ -14,7 +13,7 @@ const TopBar = () => {
 
   const handleFilterByType = (event) => {
     const { value } = event.target
-    setSelectedType(value)
+    handleFilter(value)
   }
 
   return (
@@ -24,7 +23,7 @@ const TopBar = () => {
           <div className="flex  gap-xl ">
             <a href="index.html">
               <img src="https://cdn-icons-png.flaticon.com/512/1169/1169608.png" alt="" className="nav__logo"
-                width="40" />
+                width="40" height="40" />
             </a>
           </div>
           <form className="pokemonInput" role="search" id="searchForm">
