@@ -1,12 +1,14 @@
 import React from 'react'
+import defaultImage from '../assets/default.png'
 
 const PokemonItem = ({ pokemon, handleSelect }) => {
   const id = pokemon.url.split("/").at(6)
+  
   return (
-    <div>
+    
       <article className="card pokemon-modal" data-id={id} href="#modal" onClick={() => handleSelect(pokemon)} >
         <div className="card__image">
-          <img src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"+id+".png"} alt={pokemon.name} />
+          <img src={pokemon.image || defaultImage} />
         </div>
         <div className="card__content">
             <div className="card__content-title box-card text-center">
@@ -16,7 +18,7 @@ const PokemonItem = ({ pokemon, handleSelect }) => {
             </div>
         </div>
       </article>
-    </div>
+    
   )
 }
 

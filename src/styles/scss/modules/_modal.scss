@@ -121,13 +121,17 @@
     text-align: right;
     color: #fff;
     font-weight: 600;
+    background-color: #000;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    border-radius: 50%;
+    padding-top: 3px;
+    position: fixed;
+    right: 3%;
 }
 
 
 #closeModal:hover{
-    font-size: 42px;
-    width: 100%;
-    text-align: right;
-    color: rgb(0, 0, 0);
-    font-weight: 600;
+    background-color: rgb(83, 83, 83);
 }

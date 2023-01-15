@@ -13,6 +13,8 @@
 	overflow: hidden;
 	img {
 		width: 100%;
+		min-width: 368px;
+		min-height: 223px;
 	}
 }
 .card__content-title {

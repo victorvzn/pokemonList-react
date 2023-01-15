@@ -25,11 +25,13 @@ function App() {
           const id = url.split("/").at(6)
           const pokemonResponse = await fetchPokemon(id)
           const types = await pokemonResponse.data.types.map(type => type.type.name).join(", ")
-          const stats = await pokemonResponse.data.stats.map(stat => stat.stat).join(", ")
+          const stats = await pokemonResponse.data.stats
           const abilities = await pokemonResponse.data.abilities.map(ability => ability.ability.name).join(", ")
+          const moves = await pokemonResponse.data.moves.map(move => move.move.name).join(' , ')
           const weight = await pokemonResponse.data.weight
           const height = await pokemonResponse.data.height
           const exp = await pokemonResponse.data.base_experience
+          const image = await pokemonResponse.data.sprites.other['official-artwork'].front_default
           return {
             ...result,
             types,
@@ -37,7 +39,10 @@ function App() {
             weight,
             height,
             exp,
-            abilities
+            abilities,
+            image,
+            id,
+            moves
           }
         })
 
