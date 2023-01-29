@@ -8,7 +8,7 @@ const PokemonItem = ({ pokemon, handleSelect }) => {
     
       <article className="card pokemon-modal" data-id={id} href="#modal" onClick={() => handleSelect(pokemon)} >
         <div className="card__image">
-          <img src={pokemon.image || defaultImage} />
+          <img src={pokemon.image || defaultImage} loading='lazy' />
         </div>
         <div className="card__content">
             <div className="card__content-title box-card text-center">
