@@ -1,22 +1,22 @@
 import { useEffect, useState } from 'react'
 import { fetchTypes } from '../services/types'
 
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
-import {useParams} from 'react-router-dom'
+import { useDispatch, useSelector } from "react-redux"
+import { fetchAllPokemonTypes } from '../redux/thunks/pokemonTypesThunk'
 
 const TopBar = ({ handleFilter }) => {
-  const [types, setTypes] = useState([])
+  const { pokemonTypes } = useSelector(state => state.pokemonTypes)
 
   const navigate = useNavigate()
 
   const { type } = useParams()
 
+  const dispatch = useDispatch()
+
   useEffect(() => {
-    fetchTypes()
-      .then(async (response) => {
-        setTypes(response.data.results)
-      })
+    dispatch(fetchAllPokemonTypes())
   }, [])
 
   const handleFilterByType = (event) => {
@@ -40,7 +40,7 @@ const TopBar = ({ handleFilter }) => {
             <div className="textfield-simple search-field flex items-center gap-sm w-138">
               <select className="search-input" name="" placeholder="selecciona un categoría" onChange={handleFilterByType} value={type}>
                 <option value="normal">Selecciona un tipo</option>
-                {types && types.map(({ name }) => (
+                {pokemonTypes && pokemonTypes.map(({ name }) => (
                   <option key={name} value={name}>{name}</option>
                 ))}
               </select>

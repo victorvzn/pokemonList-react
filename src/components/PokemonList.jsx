@@ -56,8 +56,8 @@ const PokemonList = ({ pokemons, isLoading, isNotFound }) => {
     <>
       <section className="section section-cards">
         <div className="container g-elements gap-md" id="PokemonsContainer">
-
-          {pokemons && pokemons.map(pokemon => <PokemonItem key={pokemon.name} pokemon={pokemon} handleSelect={handleSelect} />)}
+        
+          {pokemons && pokemons.map(pokemon => <PokemonItem key={pokemon.id} pokemon={pokemon} handleSelect={handleSelect} />)}
 
         </div>
       </section>
